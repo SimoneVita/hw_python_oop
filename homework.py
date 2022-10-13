@@ -73,10 +73,10 @@ class Running(Training):
 
     def get_spent_calories(self) -> float:
         """Переопределяем количество затраченных калорий для бега."""
-        calories = ((self.CALORIES_MEAN_SPEED_MULTIPLIER *
-                    self.get_mean_speed() + self.CALORIES_MEAN_SPEED_SHIFT) *
-                    self.weight / self.M_IN_KM * self.duration *
-                    self.H_IN_M)
+        calories = ((self.CALORIES_MEAN_SPEED_MULTIPLIER
+                    * self.get_mean_speed() + self.CALORIES_MEAN_SPEED_SHIFT)
+                    * self.weight / self.M_IN_KM * self.duration
+                    * self.H_IN_M)
         return calories
 
 
@@ -100,13 +100,13 @@ class SportsWalking(Training):
 
     def get_spent_calories(self) -> float:
         """Переопределяем количество затраченных калорий для ходьбы."""
-        calories = ((self.CALORIES_WEIGHT_MULTIPLIER *
-                    self.weight + ((self.get_mean_speed() /
-                    self.KMPH_IN_MPS) **
-                    self.MEAN_SPEED_IN_MPS_EXP // (self.height /
-                    self.SM_IN_M)) *
-                    self.WEIGHT_MULTIPLIER *
-                    self.weight) * (self.duration * self.H_IN_M))
+        calories = ((self.CALORIES_WEIGHT_MULTIPLIER
+                    * self.weight + ((self.get_mean_speed()
+                    / self.KMPH_IN_MPS)
+                    ** self.MEAN_SPEED_IN_MPS_EXP // (self.height
+                    / self.SM_IN_M))
+                    * self.WEIGHT_MULTIPLIER
+                    * self.weight) * (self.duration * self.H_IN_M))
         return calories
 
 
@@ -135,10 +135,10 @@ class Swimming(Training):
 
     def get_spent_calories(self) -> float:
         """Переопределяем количество затраченных калорий для плавания."""
-        spent_calories = ((self.get_mean_speed() +
-                          self.CALORIES_MEAN_SPEED_MULTIPLIER) *
-                          self.MEAN_SPEED_CALORIES_MULTIPLIER * self.weight *
-                          self.duration)
+        spent_calories = ((self.get_mean_speed()
+                          + self.CALORIES_MEAN_SPEED_MULTIPLIER)
+                          * self.MEAN_SPEED_CALORIES_MULTIPLIER * self.weight
+                          * self.duration)
         return spent_calories
 
 
