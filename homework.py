@@ -101,10 +101,10 @@ class SportsWalking(Training):
     def get_spent_calories(self) -> float:
         """Переопределяем количество затраченных калорий для ходьбы."""
         calories = ((self.CALORIES_WEIGHT_MULTIPLIER
-                    * self.weight + ((self.get_mean_speed()
-                    / self.KMPH_IN_MPS)
-                    ** self.MEAN_SPEED_IN_MPS_EXP // (self.height
-                    / self.SM_IN_M))
+                    * self.weight + ((self.get_mean_speed() /
+                     self.KMPH_IN_MPS) **
+                     self.MEAN_SPEED_IN_MPS_EXP // (self.height /
+                     self.SM_IN_M))
                     * self.WEIGHT_MULTIPLIER
                     * self.weight) * (self.duration * self.H_IN_M))
         return calories
@@ -129,8 +129,8 @@ class Swimming(Training):
 
     def get_mean_speed(self) -> float:
         """Переопределяем среднюю скорость движения для плавания."""
-        mean_speed = (self.length_pool * self.count_pool /
-                      self.M_IN_KM / self.duration)
+        mean_speed = (self.length_pool * self.count_pool
+                      / self.M_IN_KM / self.duration)
         return mean_speed
 
     def get_spent_calories(self) -> float:
