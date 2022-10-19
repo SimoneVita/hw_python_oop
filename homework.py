@@ -1,5 +1,4 @@
-from __future__ import annotations
-from typing import Dict
+from typing import Dict, List
 from dataclasses import dataclass
 
 
@@ -24,9 +23,9 @@ class InfoMessage:
 class Training:
     """Базовый класс тренировки."""
 
-    LEN_STEP: float = 0.65  # длина расстояния при шаге
-    M_IN_KM: int = 1000  # первод из метров в километры
-    MIN_IN_H: int = 60  # часы в минуты
+    LEN_STEP: float = 0.65
+    M_IN_KM: int = 1000
+    MIN_IN_H: int = 60
 
     def __init__(self,
                  action: int,
@@ -75,8 +74,8 @@ class Running(Training):
 class SportsWalking(Training):
     """Тренировка: спортивная ходьба."""
 
-    KMH_IN_MSEC: float = 0.278  # для перевода из км/ч в м/с
-    CM_IN_M: int = 100  # первод сантиметров в метры
+    KMH_IN_MSEC: float = 0.278
+    CM_IN_M: int = 100
     CALORIES_WEIGHT_MULTIPLIER: float = 0.035
     MEAN_SPEED_IN_MPS_EXP: int = 2
     CALORIES_SPEED_HEIGHT_MULTIPLIER: float = 0.029
@@ -130,7 +129,7 @@ class Swimming(Training):
                 * self.duration)
 
 
-def read_package(workout_type: str, data: list[int]) -> Training:
+def read_package(workout_type: str, data: List[int]) -> Training:
     """Прочитать данные полученные от датчиков."""
     sports: Dict[str, type[Training]] = {'SWM': Swimming,
                                          'RUN': Running,
@@ -139,8 +138,7 @@ def read_package(workout_type: str, data: list[int]) -> Training:
     if workout_type not in sports:
         raise ValueError(f'такого типа тренировки '
                          f'как {workout_type} не существует')
-    else:
-        return sports[workout_type](*data)
+    return sports[workout_type](*data)
 
 
 def main(training: Training) -> None:
